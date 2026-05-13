@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Cinzel Decorative', serif;
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Lato', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #0a1628;
+  color: #e8d5a3;
+  overflow-x: hidden;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a1628;
+}
+::-webkit-scrollbar-thumb {
+  background: #c49a2a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4a017;
+}
+
+/* Parchment texture */
+.parchment-texture {
+  background-color: #f5ecd7;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+}
+
+/* Vignette effect */
+.vignette::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.7) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Map border */
+.map-border {
+  border: 3px solid #c49a2a;
+  box-shadow:
+    inset 0 0 20px rgba(196, 154, 42, 0.2),
+    0 0 40px rgba(0,0,0,0.6),
+    0 0 1px #c49a2a;
+}
+
+/* Golden divider */
+.golden-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #d4a017;
+}
+.golden-divider::before,
+.golden-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #d4a017, transparent);
+}
+
+/* Leaflet fix */
+.leaflet-container {
+  font-family: var(--font-heading) !important;
+}
+
+/* Custom marker */
+.custom-marker {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.custom-marker:hover {
+  transform: scale(1.2) translateY(-4px);
+}
+.custom-marker.bounce {
+  animation: markerBounce 0.6s ease-in-out;
+}
+
+@keyframes markerBounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-16px); }
+  60% { transform: translateY(-8px); }
+}
+
+/* Star field */
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+}
+
+/* Wave layers */
+.wave-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Particles */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: #d4a017;
+  pointer-events: none;
+}
+
+/* Decorative border corners */
+.corner-decoration {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-color: #c49a2a;
+  border-style: solid;
+}
+.corner-decoration.tl { top: 1rem; left: 1rem; border-width: 2px 0 0 2px; }
+.corner-decoration.tr { top: 1rem; right: 1rem; border-width: 2px 2px 0 0; }
+.corner-decoration.bl { bottom: 1rem; left: 1rem; border-width: 0 0 2px 2px; }
+.corner-decoration.br { bottom: 1rem; right: 1rem; border-width: 0 2px 2px 0; }
+
+/* Parchment card */
+.parchment-card {
+  background: linear-gradient(135deg, #f5ecd7 0%, #e8d5a3 50%, #dcc98c 100%);
+  border: 1px dashed #8b6914;
+  position: relative;
+}
+.parchment-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  border-radius: inherit;
+}
